@@ -6,6 +6,8 @@ json_file = 'create_pet.json'
 with open(json_file, "r") as file:
     request_body = json.load(file)
 
+
+@pytest.mark.order(1)
 class TestCreatePet:
 
     def test_status_code_is_200(self):

@@ -7,6 +7,8 @@ with open(json_file, "r") as file:
     request_body = json.load(file)
     object_id = request_body['id']
 
+
+@pytest.mark.order(2)
 class TestGetPetByID:
 
     def test_status_code_is_200(self):

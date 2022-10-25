@@ -1,11 +1,13 @@
 import requests
 import json
+import pytest
 
 json_file = 'update_pet.json'
 with open(json_file, 'r') as file:
     request_body = json.load(file)
 
 
+@pytest.mark.order(3)
 class TestUpdatePet:
 
     def test_status_code_is_200(self):

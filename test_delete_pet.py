@@ -3,18 +3,21 @@ import requests
 import pytest
 
 json_file = 'create_pet.json'
-with open (json_file,'r') as file:
+with open(json_file, 'r') as file:
     data = json.load(file)
     object_id = data['id']
+
 
 @pytest.fixture(scope="class")
 def api_response():
     response = requests.delete(f'https://petstore.swagger.io/v2/pet/{object_id}')
     return response
 
+
+@pytest.mark.order(4)
 class TestDeletePetByID:
 
-    def test_object_is_deleted_successfully(self,api_response):
+    def test_object_is_deleted_successfully(self, api_response):
         response_body = api_response.json()
         assert api_response.status_code == 200, 'Status code is not 200'
         assert response_body['type'] == 'unknown', 'The response body type is not unknown'
